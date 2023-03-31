@@ -6,10 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="assets\info.css">
 </head>
 
-<body>
+<body class="has-background-dark">
+    <header class="pb-2">
+        <h1 id="country-name" class="title is-1 has-text-light is-italic has-text-weight-bold">Italy</h1>
+    </header>
+
+    <section class="has-text-light is-flex-direction-column is-flex is-align-content-center">
+        <img id="flag" class="is-align-self-center" src="https://flagcdn.com/w320/it.png" alt="Country's flag">
+        <ul class="">
+            <li>Capital</li>
+            <li>Population</li>
+            <li>Languages</li>
+            <li>Map</li>
+        </ul>
+        <div class="is-flex is-flex-direction-column is-align-content-center">
+            <h2 class="is-align-self-center is-size-3">Currency</h2>
+            <div class="is-flex is-align-self-center">
+                <input id="amount" class="is-large is-size-6" type="text">
+                <p class="is-size-3"> =__ USD</p>
+            </div>
+        </div>
+    </section>
 
 </body>
 
