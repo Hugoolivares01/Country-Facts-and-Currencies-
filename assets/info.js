@@ -42,20 +42,17 @@ document.addEventListener('DOMContentLoaded', function () {
     var SearchSplit = SearchLine.split('=');
     var SearchValue = SearchSplit[1];
     // var query = searchParamsArr[0].split('=').pop();
-    console.log(SearchValue);
     // changed later this is a place holder for value change
 });
 
 function ConvertCurrency() {
-    console.log("hello")
     GrabForeignAmount()
     FetchNewAmount()
-    // PlaceNewAmount()
+    PlaceNewAmount()
 }
 
 function GrabForeignAmount() {
     var ForceNumberInput = parseInt(InputAmount.value);
-    console.log(ForceNumberInput)
     if (isNaN(ForceNumberInput)) {
         alert("Not a number try again");
         return;
@@ -63,7 +60,6 @@ function GrabForeignAmount() {
     else {
         var SplitBaseUrl = BaseUrl.split('=');
         var RevisedUrl = [SplitBaseUrl[0], ForceNumberInput, SplitBaseUrl[1], SplitBaseUrl[2], SplitBaseUrl[3]].join('=');
-        console.log(RevisedUrl);
         return RevisedUrl;
     }
 
@@ -71,16 +67,21 @@ function GrabForeignAmount() {
 
 function FetchNewAmount() {
     var NewUrl = GrabForeignAmount();
-    fetch(NewUrl, {
+    return fetch(NewUrl, {
     })
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
-            var ChangedCurrency = data.rates;
-            console.log(ChangedCurrency);
+            var ChangedCurrency = data.rates.GBP;
+        return ChangedCurrency;
         });
+        // place holder code 
+}
+
+function PlaceNewAmount() {
+    var ForeignCurrency = FetchNewAmount();
+    ConvertedAmount.textContent = ForeignCurrency+ "Foreign Currency"
 }
 ConvertBtn.addEventListener('click', ConvertCurrency);
 
@@ -90,7 +91,7 @@ ConvertBtn.addEventListener('click', ConvertCurrency);
 //         return response.json();
 //     })
 //     .then(function (data) {
-//         console.log(data.rates.GBP);
-
+//         NewRate = data.rates;
+//         console.log(NewRate);
 //     });
 //     // reference
