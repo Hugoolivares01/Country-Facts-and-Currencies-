@@ -43,13 +43,32 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 var InputAmount = document.querySelector('#amount')
 var ConvertBtn = document.querySelector('#ConvertBtn')
-
+var ConvertedAmount = document.querySelector('#ConvertedAmount')
+var BaseUrl = 'https://api.frankfurter.app/latest?amount=&from=USD&to=GBP'
+var CurrencyTitle = document.querySelector('#CurrencyTitle')
 function ConvertCurrency() {
     console.log("hello")
-
+    GrabForeignAmount()
+    // FetchNewAmount()
+    // PlaceNewAmount()
 }
+function GrabForeignAmount() {
+    var ForceNumberInput = parseInt(InputAmount.value);
+    console.log (ForceNumberInput)
+    if (isNaN(ForceNumberInput)){
+        alert("Not a number try again");
+        return;
+    }
+    else{
+        var SplitBaseUrl = BaseUrl.split('=');
+        var NewUrl = [SplitBaseUrl[0],ForceNumberInput,SplitBaseUrl[1],SplitBaseUrl[2],SplitBaseUrl[3]].join('=');
+        console.log(NewUrl);
+    }
+    return;
+}
+
+
 ConvertBtn.addEventListener('click', ConvertCurrency);
-// parseInt
 
 fetch('https://api.frankfurter.app/latest?amount=20&from=USD&to=GBP', {
 })
@@ -60,3 +79,4 @@ fetch('https://api.frankfurter.app/latest?amount=20&from=USD&to=GBP', {
         console.log(data.rates.GBP);
 
     });
+    // reference 
