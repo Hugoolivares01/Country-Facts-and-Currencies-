@@ -57,3 +57,12 @@ fetch('https://restcountries.com/v3.1/all/', {
     });
     // name Reference 
 
+    var SearchCountry = document.querySelector("#Search-Country");;
+    function Countryselect(event) {
+        event.preventDefault();
+        var SearchBarVal= document.querySelector("#countries-list").value;
+        var queryString = './info.html?q=' + SearchBarVal;
+        location.assign(queryString);
+      }
+      SearchCountry.addEventListener('click', Countryselect);
+    // base code for the search to next html
