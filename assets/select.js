@@ -15,6 +15,9 @@
 //     .then(function (data) {
 //         console.log(data);
 //     });
+
+
+
 const countriesList = document.querySelector("#countries-list");
 fetch(
     "https://restcountries.com/v3.1/all"
@@ -28,11 +31,29 @@ fetch(
         countriesList.append(option);
     });
 });
-fetch('https://restcountries.com/v3.1/name/', {
+// full list of options 
+
+fetch('https://restcountries.com/v3.1/all/', {
 })
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
         console.log(data);
+    
     });
+    // Full reference 
+
+
+    fetch('https://restcountries.com/v3.1/all/', {
+})
+    .then(function (response) {
+        return response.json();
+    })
+      .then(function (data) {
+        data.forEach(function (Country) {
+            console.log(Country.name.common);
+        });
+    });
+    // name Reference 
+
