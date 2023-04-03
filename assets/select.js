@@ -17,13 +17,13 @@
 //     });
 const countriesList = document.querySelector("#countries-list");
 fetch(
-    "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json"
+    "https://restcountries.com/v3.1/all"
 )
 .then((res) => res.json())
 .then((countries) => {
     Object.entries(countries).forEach(function (val){
         const option = document.createElement("option");
-        option.textContent = val[1];
+        option.textContent = val[1].name.common;
         option.value = val[0];
         countriesList.append(option);
     });
