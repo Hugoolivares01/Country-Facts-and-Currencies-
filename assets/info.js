@@ -34,11 +34,17 @@
 //     });
 
 var countryName = document.querySelector('#country-name')
+var flag = document.querySelector('#flag')
+var capital = document.querySelector('#capital')
+var population = document.querySelector('#population')
+var languages = document.querySelector('#languages')
+var map = document.querySelector('#map')
 var InputAmount = document.querySelector('#amount')
 var ConvertBtn = document.querySelector('#ConvertBtn')
 var ConvertedAmount = document.querySelector('#ConvertedAmount')
 var BaseUrl = 'https://api.frankfurter.app/latest?amount=&from=USD&to=GBP'
 var CurrencyTitle = document.querySelector('#CurrencyTitle')
+var currency = ""
 // document.addEventListener('DOMContentLoaded', function () {
 //     var SearchLine = document.location.search;
 //     var SearchSplit = SearchLine.split('=');
@@ -59,17 +65,16 @@ function fetchCountryInfo() {
         })
         .then(function (data) {
             console.log(data);
-            console.log(data[0].name.common)
-            console.log(data[0].capital[0])
-            console.log(data[0].population)
-            let currency = JSON.stringify(data[0].currencies).split(":")[0].replace(/[^a-zA-Z]/g, "")
-            console.log(currency)
-            let languages = JSON.stringify(data[0].languages).split(":")[1].replace(/[^a-zA-Z]/g, "")
-            console.log(languages)
-            countryName.innerHTML = languages
-            console.log(data[0].maps.googleMaps)
-            console.log(data[0].flags.png)
-        });
+            countryName.innerHTML = data[0].name.common
+            flag.setAttribute("src", data[0].flags.png)
+            capital.innerHTML = "Capital: " + data[0].capital[0]
+            population.innerHTML = "Population: " + data[0].population
+            let language = JSON.stringify(data[0].languages).split(":")[1].replace(/[^a-zA-Z]/g, "")
+            languages.innerHTML = "Main language: " + language
+            map.innerHTML = "Link to Map of " + data[0].name.common
+            map.setAttribute("href", data[0].maps.googleMaps)
+            currency = JSON.stringify(data[0].currencies).split(":")[0].replace(/[^a-zA-Z]/g, "")
+        })
 }
 
 function ConvertCurrency() {
