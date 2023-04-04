@@ -52,7 +52,7 @@ var currency = ""
 //     // var query = searchParamsArr[0].split('=').pop();
 //     // changed later this is a place holder for value change
 // });
-var searchValue = "Italy"
+var searchValue = "France"
 
 fetchCountryInfo()
 
@@ -74,6 +74,7 @@ function fetchCountryInfo() {
             map.innerHTML = "Link to Map of " + data[0].name.common
             map.setAttribute("href", data[0].maps.googleMaps)
             currency = JSON.stringify(data[0].currencies).split(":")[0].replace(/[^a-zA-Z]/g, "")
+            ConvertedAmount.innerHTML = " = " + currency
         })
 }
 
@@ -90,10 +91,10 @@ function GrabForeignAmount() {
         return;
     }
     else {
-        var SplitBaseUrl = BaseUrl.split('=');
-        var RevisedUrl = 'https://api.frankfurter.app/latest?amount=' + ForceNumberInput + '&from=USD&to=GBP';
+        var exchangeURL = 'https://api.frankfurter.app/latest?amount=' + ForceNumberInput + '&from=USD&to=' + currency;
+        console.log(exchangeURL);
         // var RevisedUrl = [SplitBaseUrl[0], ForceNumberInput, SplitBaseUrl[1], SplitBaseUrl[2], SplitBaseUrl[3]].join('=');
-        return RevisedUrl;
+        return exchangeURL;
     }
 }
 
@@ -106,6 +107,7 @@ function FetchNewAmount() {
         })
         .then(function (data) {
             var ChangedCurrency = data.rates.GBP;
+            console.log(ChangedCurrency);
             return ChangedCurrency;
         });
     // place holder code 
