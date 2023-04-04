@@ -16,7 +16,7 @@
 //         console.log(data);
 //     });
 
-
+var sock = 1
 
 const countriesList = document.querySelector("#countries-list");
 fetch(
