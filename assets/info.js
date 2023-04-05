@@ -51,13 +51,13 @@ var amount = ""
 document.addEventListener('DOMContentLoaded', function () {
     var SearchLine = document.location.search;
     var SearchSplit = SearchLine.split('=');
-    searchValue = SearchSplit[1];
+    searchValue = SearchSplit[1]
+    fetchCountryInfo()
     // var query = searchParamsArr[0].split('=').pop();
     // changed later this is a place holder for value change
 });
 // var searchValue = "France"
 
-fetchCountryInfo()
 
 function fetchCountryInfo() {
     var infoURL = 'https://restcountries.com/v3.1/name/' + searchValue
