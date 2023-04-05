@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Country Information</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="assets\select.css">
+    <link rel="stylesheet" href="assets/select.css">
 
 </head>
 
@@ -16,15 +16,14 @@
         <h1 >Country</h1>
     </section>
     <section class="$section-padding-large">
-        <div class="field has-addons">
-            <div class="control is-expanded">
-                <div class="select is-fullwidth">
-                    <select name="Countries" id="countries-list">
-                    </select>
-                </div>
-            </div>
-            <div class="control">
-                <button id="Search-Country" class="button is-info">Select</button>
+        <div class="field has-addons is-flex is-justify-content-center">
+            <div class="select is-large ">
+                <select  class="is-focused has-text-link-dark" name="Countries" id="countries-list">
+                  <option>Select Country</option>
+                </select>
+              </div>
+            <div class="control ">
+                <button id="Search-Country" class="button is-info is-large">Select</button>
             </div>
         </div>
     </section>
