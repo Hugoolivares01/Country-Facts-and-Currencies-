@@ -44,15 +44,18 @@ var ConvertBtn = document.querySelector('#ConvertBtn')
 var ConvertedAmount = document.querySelector('#ConvertedAmount')
 var BaseUrl = 'https://api.frankfurter.app/latest?amount=&from=USD&to=GBP'
 var CurrencyTitle = document.querySelector('#CurrencyTitle')
+var searchValue = ""
 var currency = ""
-// document.addEventListener('DOMContentLoaded', function () {
-//     var SearchLine = document.location.search;
-//     var SearchSplit = SearchLine.split('=');
-//     var SearchValue = SearchSplit[1];
-//     // var query = searchParamsArr[0].split('=').pop();
-//     // changed later this is a place holder for value change
-// });
-var searchValue = "France"
+var amount = ""
+
+document.addEventListener('DOMContentLoaded', function () {
+    var SearchLine = document.location.search;
+    var SearchSplit = SearchLine.split('=');
+    searchValue = SearchSplit[1];
+    // var query = searchParamsArr[0].split('=').pop();
+    // changed later this is a place holder for value change
+});
+// var searchValue = "France"
 
 fetchCountryInfo()
 
@@ -81,7 +84,6 @@ function fetchCountryInfo() {
 function ConvertCurrency() {
     GrabForeignAmount()
     FetchNewAmount()
-    PlaceNewAmount()
 }
 
 function GrabForeignAmount() {
@@ -93,7 +95,6 @@ function GrabForeignAmount() {
     else {
         var exchangeURL = 'https://api.frankfurter.app/latest?amount=' + ForceNumberInput + '&from=USD&to=' + currency;
         console.log(exchangeURL);
-        // var RevisedUrl = [SplitBaseUrl[0], ForceNumberInput, SplitBaseUrl[1], SplitBaseUrl[2], SplitBaseUrl[3]].join('=');
         return exchangeURL;
     }
 }
@@ -106,16 +107,15 @@ function FetchNewAmount() {
             return response.json();
         })
         .then(function (data) {
-            var ChangedCurrency = data.rates.GBP;
-            console.log(ChangedCurrency);
-            return ChangedCurrency;
+            console.log(data);
+            amount = JSON.stringify(data.rates).replace(/[^0-9.]/g, "");
+            PlaceNewAmount()
         });
-    // place holder code 
 }
 
 function PlaceNewAmount() {
-    var ForeignCurrency = FetchNewAmount();
-    ConvertedAmount.textContent = ForeignCurrency + "Foreign Currency"
+    console.log(amount);
+    ConvertedAmount.innerHTML = " = " + amount + currency
 }
 ConvertBtn.addEventListener('click', ConvertCurrency);
 
