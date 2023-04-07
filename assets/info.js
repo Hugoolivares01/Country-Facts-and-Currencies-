@@ -110,12 +110,23 @@ function FetchNewAmount() {
     var NewUrl = GrabForeignAmount();
     return fetch(NewUrl, {
     })
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data);
-            amount = JSON.stringify(data.rates).replace(/[^0-9.]/g, "");
+
+            .then(function (response) {
+                if (!response.ok) {
+                    var modal = document.querySelector('.modal1');
+                    modal.classList.add('is-active');
+                    var closeModalBtn = document.querySelector('.modal-close');
+                    closeModalBtn.addEventListener('click', function () {
+                        var modal = document.querySelector('.modal1');
+                        modal.classList.remove('is-active');
+                    });
+                    return;
+                 }
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data);
+                amount = JSON.stringify(data.rates).replace(/[^0-9.]/g, "");
             PlaceNewAmount()
         });
 }
@@ -125,6 +136,9 @@ function PlaceNewAmount() {
     ConvertedAmount.innerHTML = " = " + amount + currency
 }
 ConvertBtn.addEventListener('click', ConvertCurrency);
+
+
+
 
 // fetch('https://api.frankfurter.app/latest?amount=20&from=USD&to=GBP', {
 // })
