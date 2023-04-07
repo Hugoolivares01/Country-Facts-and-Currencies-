@@ -59,9 +59,24 @@ var SearchCountry = document.querySelector("#Search-Country");;
 function Countryselect(event) {
     event.preventDefault();
     var selectedOption = countriesList.options[countriesList.selectedIndex];
-    var SearchBarVal = selectedOption.textContent;
+    SearchBarVal = selectedOption.textContent;
     var queryString = './info.html?q=' + SearchBarVal;
     location.assign(queryString);
 }
 SearchCountry.addEventListener('click', Countryselect);
 // base code for the search to next html
+var SearchBarVal = ''
+var searchedCountries = JSON.parse(localStorage.getItem('searched'))
+if (searchedCountries == null) {
+    searchedCountries=[]
+}
+
+function addToList() {
+    searchedCountries.unshift(SearchBarVal)
+    searchedCountries = $.grep(searchedCountries, function (element, index){
+        return index === $.inArray(element, searchedCountries)
+    })
+    localStorage.setItem('searched', JSON.stringify(searchedCountries))
+
+}
+
