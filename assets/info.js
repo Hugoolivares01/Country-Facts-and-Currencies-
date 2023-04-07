@@ -47,13 +47,14 @@ var CurrencyTitle = document.querySelector('#CurrencyTitle')
 var searchValue = ""
 var currency = ""
 var amount = ""
+var exchangeURL = ''
 var $el = document.querySelector('#el')
 
 document.addEventListener('DOMContentLoaded', function () {
     var SearchLine = document.location.search;
     var SearchSplit = SearchLine.split('=');
     searchValue = SearchSplit[1]
-    fetchCountryInfo()
+    // fetchCountryInfo()
     // var query = searchParamsArr[0].split('=').pop();
     // changed later this is a place holder for value change
 });
@@ -84,45 +85,46 @@ function fetchCountryInfo() {
 
 function ConvertCurrency() {
     GrabForeignAmount()
-    FetchNewAmount()
+
 }
 
 function GrabForeignAmount() {
     var ForceNumberInput = parseInt(InputAmount.value);
     if (isNaN(ForceNumberInput)) {
-        var modal = document.querySelector('.modal');
+        var modal = document.querySelector('#el');
         modal.classList.add('is-active');
-        var closeModalBtn = document.querySelector('.modal-close');
+        var closeModalBtn = document.querySelector('#close1');
         closeModalBtn.addEventListener('click', function () {
-            var modal = document.querySelector('.modal');
+            var modal = document.querySelector('#el');
             modal.classList.remove('is-active');
         });
         return;
     }
     else {
-        var exchangeURL = 'https://api.frankfurter.app/latest?amount=' + ForceNumberInput + '&from=USD&to=' + currency;
+        exchangeURL = 'https://api.frankfurter.app/latest?amount=' + ForceNumberInput + '&from=USD&to=' + currency;
         console.log(exchangeURL);
-        return exchangeURL;
+        FetchNewAmount()
     }
 }
 
 function FetchNewAmount() {
-    var NewUrl = GrabForeignAmount();
-    return fetch(NewUrl, {
+    return fetch(exchangeUrl, {
     })
 
             .then(function (response) {
                 if (!response.ok) {
-                    var modal = document.querySelector('.modal1');
+                    var modal = document.querySelector('#el2');
                     modal.classList.add('is-active');
-                    var closeModalBtn = document.querySelector('.modal-close');
+                    var closeModalBtn = document.querySelector('#close2');
                     closeModalBtn.addEventListener('click', function () {
-                        var modal = document.querySelector('.modal1');
+                        var modal = document.querySelector('#el2');
                         modal.classList.remove('is-active');
                     });
                     return;
                  }
+                 else {
                 return response.json();
+                 }
             })
             .then(function (data) {
                 console.log(data);
