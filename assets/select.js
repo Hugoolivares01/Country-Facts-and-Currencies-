@@ -48,22 +48,21 @@ var SearchCountry = document.querySelector("#Search-Country")
 var countriesList = document.querySelector("#countries-list");
 var historylist = $("#historylist");
 
-fetch(
-    "https://restcountries.com/v3.1/all"
-)
-    .then((res) => res.json())
-    .then((countries) => {
-        Object.entries(countries).forEach(function (val) {
-            const option = document.createElement("option");
-            option.textContent = val[1].name.common;
-            option.value = val[0];
-            countriesList.append(option);
-        });
-    });
+// fetch(
+//     "https://restcountries.com/v3.1/all"
+// )
+//     .then((res) => res.json())
+//     .then((countries) => {
+//         console.log(countries);
+//         Object.entries(countries).forEach(function (val) {
+//             const option = document.createElement("option");
+//             option.textContent = val[1].name.common;
+//             countriesList.append(option);
+//         });
+//     });
 
 var SearchBarVal = ''
 var searchedCountries = JSON.parse(localStorage.getItem('searched'))
-console.log(searchedCountries);
 if (searchedCountries == null) {
     searchedCountries = []
 }
@@ -71,26 +70,33 @@ if (searchedCountries == null) {
 for (let i = 0; i < searchedCountries.length; i++) {
     var newSearchedCountry = $("<li>").text(searchedCountries[i])
     newSearchedCountry.addClass("button is-outlined is-info")
+    newSearchedCountry.attr("id", "countrybtn")
     historylist.append(newSearchedCountry)
 }
 
-function Countryselect(event) {
+function Countryselect() {
     var queryString = './info.html?q=' + SearchBarVal;
     addToList()
-    location.assign(queryString);
+    // location.assign(queryString);
 }
 
 SearchCountry.addEventListener('click', function (event) {
     event.preventDefault()
     var selectedOption = countriesList.options[countriesList.selectedIndex];
+    console.log(selectedOption);
     SearchBarVal = selectedOption.textContent;
+    if (SearchBarVal === "Select Country") {
+        console.log("Please choose a country");
+        return
+    }
     Countryselect()
 });
 
-var countrybtn = $(".button")
+var countrybtn = $("#countrybtn")
 countrybtn.on('click', function (event) {
     event.preventDefault()
     SearchBarVal = ($(event.target).text())
+    console.log(SearchBarVal);
     Countryselect()
 })
 
