@@ -16,7 +16,9 @@
 //         console.log(data);
 //     });
 
-const countriesList = document.querySelector("#countries-list");
+var SearchCountry = document.querySelector("#Search-Country")
+var countriesList = document.querySelector("#countries-list");
+var historylist = document.querySelector("#historylist");
 fetch(
     "https://restcountries.com/v3.1/all"
 )
@@ -55,7 +57,6 @@ fetch('https://restcountries.com/v3.1/all/', {
     });
 // name Reference 
 
-var SearchCountry = document.querySelector("#Search-Country");;
 function Countryselect(event) {
     event.preventDefault();
     var selectedOption = countriesList.options[countriesList.selectedIndex];
@@ -68,15 +69,26 @@ SearchCountry.addEventListener('click', Countryselect);
 var SearchBarVal = ''
 var searchedCountries = JSON.parse(localStorage.getItem('searched'))
 if (searchedCountries == null) {
-    searchedCountries=[]
+    searchedCountries = []
 }
 
 function addToList() {
     searchedCountries.unshift(SearchBarVal)
-    searchedCountries = $.grep(searchedCountries, function (element, index){
+    searchedCountries = $.grep(searchedCountries, function (element, index) {
         return index === $.inArray(element, searchedCountries)
     })
     localStorage.setItem('searched', JSON.stringify(searchedCountries))
-
 }
 
+for (let i = 0; i < searchedCountries.length; i++) {
+    let newSearchedCountry = $("<btn>")
+    newSearched.addClass("button is-outlined is-info")
+    newSearched.text(SearchBarVal)
+    historylist.append(newSearchedCountry)
+}
+var countrybtn = $("selector for the buttons i.e. whatever classes you put on the button")
+countrybtn.on('click', function (event) {
+    event.preventDefault()
+        = ($(event.target).text());
+    findWeather()
+})
