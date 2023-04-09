@@ -1,38 +1,3 @@
-// fetch('https://restcountries.com/v3.1/all', {
-// })
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log(data);
-//     });
-
-// fetch('https://restcountries.com/v3.1/name/italy', {
-// })
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log(data);
-//     });
-
-// fetch('https://api.frankfurter.app/latest?amount=10&from=GBP&to=USD', {
-// })
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log(data);
-//     });
-// fetch('https://api.frankfurter.app/latest?amount=10&from=GBP&to=USD', {
-// })
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log(data);
-//     });
-
 var countryName = document.querySelector('#country-name')
 var flag = document.querySelector('#flag')
 var capital = document.querySelector('#capital')
@@ -65,15 +30,12 @@ function fetchCountryInfo() {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
             countryName.innerHTML = data[0].name.common
             flag.setAttribute("src", data[0].flags.png)
             capital.innerHTML = "Capital: " + data[0].capital[0]
             population.innerHTML = "Population: " + data[0].population
             let language = JSON.stringify(data[0].languages)
-            console.log(language)
             let languageDataArray = language.split(",")
-            console.log(languageDataArray);
             let languageArray = []
             for (let i = 0; i < languageDataArray.length; i++) {
                 let languageName = languageDataArray[i].split(":")[1].replace("}", "")
@@ -110,7 +72,6 @@ function GrabForeignAmount() {
     }
     else {
         exchangeURL = 'https://api.frankfurter.app/latest?amount=' + ForceNumberInput + '&from=USD&to=' + currency;
-        console.log(exchangeURL);
         FetchNewAmount()
     }
 }
@@ -135,73 +96,12 @@ function FetchNewAmount() {
             }
         })
         .then(function (data) {
-            console.log(data);
             amount = JSON.stringify(data.rates).replace(/[^0-9.]/g, "");
             PlaceNewAmount()
         });
 }
 
 function PlaceNewAmount() {
-    console.log(amount);
     ConvertedAmount.innerHTML = " = " + amount + currency
 }
 ConvertBtn.addEventListener('click', ConvertCurrency);
-
-
-
-
-// fetch('https://api.frankfurter.app/latest?amount=20&from=USD&to=GBP', {
-// })
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         NewRate = data.rates;
-//         console.log(NewRate);
-//     });
-//     // reference
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     // Functions to open and close a modal
-//     function openModal($el) {
-//         $el.classList.add('is-active');
-//     }
-
-//     function closeModal($el) {
-//         $el.classList.remove('is-active');
-//     }
-
-//     function closeAllModals() {
-//         (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-//             closeModal($modal);
-//         });
-//     }
-
-//     // Add a click event on buttons to open a specific modal
-//     (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-//         const modal = $trigger.dataset.target;
-//         const $target = document.getElementById(modal);
-
-//         $trigger.addEventListener('click', () => {
-//             openModal($target);
-//         });
-//     });
-
-//     // Add a click event on various child elements to close the parent modal
-//     (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-//         const $target = $close.closest('.modal');
-
-//         $close.addEventListener('click', () => {
-//             closeModal($target);
-//         });
-//     });
-
-//     // Add a keyboard event to close all modals
-//     document.addEventListener('keydown', (event) => {
-//         const e = event || window.event;
-
-//         if (e.keyCode === 27) { // Escape key
-//             closeAllModals();
-//         }
-//     });
-// });
