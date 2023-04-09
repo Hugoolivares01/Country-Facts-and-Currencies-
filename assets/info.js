@@ -55,11 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var SearchSplit = SearchLine.split('=');
     searchValue = SearchSplit[1]
     fetchCountryInfo()
-    // var query = searchParamsArr[0].split('=').pop();
-    // changed later this is a place holder for value change
 });
-// var searchValue = "France"
-
 
 function fetchCountryInfo() {
     var infoURL = 'https://restcountries.com/v3.1/name/' + searchValue
@@ -74,8 +70,20 @@ function fetchCountryInfo() {
             flag.setAttribute("src", data[0].flags.png)
             capital.innerHTML = "Capital: " + data[0].capital[0]
             population.innerHTML = "Population: " + data[0].population
-            let language = JSON.stringify(data[0].languages).split(":")[1].replace(/[^a-zA-Z]/g, "")
-            languages.innerHTML = "Main language: " + language
+            let language = JSON.stringify(data[0].languages)
+            console.log(language)
+            let languageDataArray = language.split(",")
+            console.log(languageDataArray);
+            let languageArray = []
+            for (let i = 0; i < languageDataArray.length; i++) {
+                let languageName = languageDataArray[i].split(":")[1].replace("}", "")
+                languageArray.push(languageName.replace(/"/g, ""))
+            }
+            for (let i = 0; i < languageArray.length; i++) {
+                let li = document.createElement("li")
+                li.innerText = languageArray[i]
+                languages.appendChild(li)
+            }
             map.innerHTML = "Link to Map of " + data[0].name.common
             map.setAttribute("href", data[0].maps.googleMaps)
             currency = JSON.stringify(data[0].currencies).split(":")[0].replace(/[^a-zA-Z]/g, "")
@@ -111,24 +119,24 @@ function FetchNewAmount() {
     return fetch(exchangeURL, {
     })
 
-            .then(function (response) {
-                if (!response.ok) {
+        .then(function (response) {
+            if (!response.ok) {
+                var modal = document.querySelector('#el2');
+                modal.classList.add('is-active');
+                var closeModalBtn = document.querySelector('#close2');
+                closeModalBtn.addEventListener('click', function () {
                     var modal = document.querySelector('#el2');
-                    modal.classList.add('is-active');
-                    var closeModalBtn = document.querySelector('#close2');
-                    closeModalBtn.addEventListener('click', function () {
-                        var modal = document.querySelector('#el2');
-                        modal.classList.remove('is-active');
-                    });
-                    return;
-                 }
-                 else {
+                    modal.classList.remove('is-active');
+                });
+                return;
+            }
+            else {
                 return response.json();
-                 }
-            })
-            .then(function (data) {
-                console.log(data);
-                amount = JSON.stringify(data.rates).replace(/[^0-9.]/g, "");
+            }
+        })
+        .then(function (data) {
+            console.log(data);
+            amount = JSON.stringify(data.rates).replace(/[^0-9.]/g, "");
             PlaceNewAmount()
         });
 }

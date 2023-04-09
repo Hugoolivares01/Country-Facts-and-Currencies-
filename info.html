@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Country Fatcs!!!</title>
+    <title>Country Facts!!!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="assets/info.css">
 </head>
@@ -24,15 +24,17 @@
             <li id="population"
                 class="m-2 p-4 has-background-grey-dark has-text-centered is-size-4 has-text-light has-text-weight-bold">
                 Population</li>
-            <li id="languages"
-                class="m-2 p-4 has-background-grey-dark has-text-centered is-size-4 has-text-light has-text-weight-bold">
-                Languages</li>
+            <li>
+                <ul id="languages" class="m-2 p-4 has-background-grey-dark has-text-centered is-size-4 has-text-light
+                    has-text-weight-bold">
+                    Languages: </ul>
+            </li>
             <a href="#" id="map" alt=""
                 class="m-2 p-4 has-background-grey-dark has-text-centered is-size-4 has-text-light has-text-weight-bold">Map</a>
         </ul>
         <div class="is-flex is-flex-direction-column is-align-content-center">
             <h2 id="CurrencyTitle"
-                class="is-align-self-center is-size-1 m-2 mt-4 p-5 pr-6 pl-6 has-background-black-ter has-text-centered has-text-light has-text-weight-bold">
+                class="is-align-self-center is-size-4 m-2 mt-4 p-3 pr-6 pl-6 has-background-black-ter has-text-centered has-text-light has-text-weight-bold">
                 Exchange Rate Calculator</h2>
             <div class="is-flex is-align-self-center has-background-black-bis m-2 mt-5 p-4">
                 <button class="button is-dark is-large has-text-weight-semibold" id="ConvertBtn">Convert</button>
@@ -43,24 +45,24 @@
         <div id="el" class="modal">
             <div class="modal-background"></div>
             <div class="modal-content">
-                <p class=" ml-1 is-large is-size-3 has-text-centered" > No Letters Or Special Characters!!!</p>
+                <p class=" ml-1 is-large is-size-3 has-text-centered"> No Letters Or Special Characters!!!</p>
                 <p class="image is-4by3">
                     <img src="assets/images/bugbunny no.jpg" alt="">
                 </p>
             </div>
             <button id="close1" class="modal-close is-large" aria-label="close"></button>
         </div>
-        
+
         <div id="el2" class="modal">
             <div class="modal-background"></div>
             <div class="modal-content">
-                <p class=" ml-1 is-large is-size-3 has-text-centered" > That Currency Is Not Supported .    .    .    .    .    . </p>
+                <p class=" ml-1 is-large is-size-3 has-text-centered"> That Currency Is Not Supported . . . . . . </p>
                 <p class="image is-4by3">
                     <img src="assets/images/cat sad.jpg" alt="">
                 </p>
             </div>
             <button id="close2" class="modal-close is-large" aria-label="close"></button>
-        </div> 
+        </div>
 
     </section>
 
