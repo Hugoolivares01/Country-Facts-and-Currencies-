@@ -2,9 +2,7 @@ var SearchCountry = document.querySelector("#Search-Country")
 var countriesList = document.querySelector("#countries-list");
 var historylist = $("#historylist");
 
-fetch(
-    "https://restcountries.com/v3.1/all"
-)
+fetch("https://restcountries.com/v3.1/all")
     .then((res) => res.json())
     .then((countries) => {
         Object.entries(countries).forEach(function (val) {
