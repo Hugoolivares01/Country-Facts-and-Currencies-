@@ -43,6 +43,7 @@ function fetchCountryInfo() {
             }
             for (let i = 0; i < languageArray.length; i++) {
                 let li = document.createElement("li")
+                li.setAttribute("class", "px-3")
                 li.innerText = languageArray[i]
                 languages.appendChild(li)
             }
