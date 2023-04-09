@@ -5,47 +5,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Country Fatcs!!!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="assets/info.css">
 </head>
 
 <body class="has-background-dark">
-    <header class="pb-2">
+    <header class="pb-2 has-text-centered">
         <h1 id="country-name" class="title is-1 has-text-light is-italic has-text-weight-bold">Italy</h1>
     </header>
 
     <section class="has-text-light is-flex-direction-column is-flex is-align-content-center">
-        <img id="flag" class="is-align-self-center" src="https://flagcdn.com/w320/it.png" alt="Country's flag">
-        <ul class="">
-            <li id="capital">Capital</li>
-            <li id="population">Population</li>
-            <li id="languages">Languages</li>
-            <a href="#" id="map" alt="">Map</a>
+        <img id="flag" class="is-align-self-center " src="https://flagcdn.com/w320/it.png" alt="Country's flag">
+        <ul class="is-centered is-flex is-justify-content-center">
+            <li id="capital"
+                class="m-2 p-4 has-background-grey-dark has-text-centered is-size-4 has-text-light has-text-weight-bold">
+                Capital</li>
+            <li id="population"
+                class="m-2 p-4 has-background-grey-dark has-text-centered is-size-4 has-text-light has-text-weight-bold">
+                Population</li>
+            <li id="languages"
+                class="m-2 p-4 has-background-grey-dark has-text-centered is-size-4 has-text-light has-text-weight-bold">
+                Languages</li>
+            <a href="#" id="map" alt=""
+                class="m-2 p-4 has-background-grey-dark has-text-centered is-size-4 has-text-light has-text-weight-bold">Map</a>
         </ul>
         <div class="is-flex is-flex-direction-column is-align-content-center">
-            <h2 id="CurrencyTitle" class="is-align-self-center is-size-3">Exchange Rate Calculator</h2>
-            <div class="is-flex is-align-self-center">
-                <button id="ConvertBtn">Convert</button>
-                <input id="amount" class="is-large is-size-6" type="text" placeholder="UDS">
-                <p id="ConvertedAmount" class="is-size-3">=Foreign Currency</p>
+            <h2 id="CurrencyTitle"
+                class="is-align-self-center is-size-1 m-2 mt-4 p-5 pr-6 pl-6 has-background-black-ter has-text-centered has-text-light has-text-weight-bold">
+                Exchange Rate Calculator</h2>
+            <div class="is-flex is-align-self-center has-background-black-bis m-2 mt-5 p-4">
+                <button class="button is-dark is-large has-text-weight-semibold" id="ConvertBtn">Convert</button>
+                <input id="amount" class=" ml-1 is-large is-size-3 has-text-centered " type="text" placeholder="UDS">
+                <p id="ConvertedAmount" class="is-size-3 has-text-weight-semibold">=Foreign Currency</p>
             </div>
         </div>
         <div id="el" class="modal">
             <div class="modal-background"></div>
             <div class="modal-content">
-                No letters
+                <p class=" ml-1 is-large is-size-3 has-text-centered" > No Letters Or Special Characters!!!</p>
+                <p class="image is-4by3">
+                    <img src="assets/images/bugbunny no.jpg" alt="">
+                </p>
             </div>
             <button id="close1" class="modal-close is-large" aria-label="close"></button>
         </div>
-
+        
         <div id="el2" class="modal">
             <div class="modal-background"></div>
             <div class="modal-content">
-                this currency not supported
+                <p class=" ml-1 is-large is-size-3 has-text-centered" > That Currency Is Not Supported .    .    .    .    .    . </p>
+                <p class="image is-4by3">
+                    <img src="assets/images/cat sad.jpg" alt="">
+                </p>
             </div>
             <button id="close2" class="modal-close is-large" aria-label="close"></button>
-        </div>
+        </div> 
+
     </section>
 
 </body>

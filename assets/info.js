@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var SearchLine = document.location.search;
     var SearchSplit = SearchLine.split('=');
     searchValue = SearchSplit[1]
-    // fetchCountryInfo()
+    fetchCountryInfo()
     // var query = searchParamsArr[0].split('=').pop();
     // changed later this is a place holder for value change
 });
@@ -108,7 +108,7 @@ function GrabForeignAmount() {
 }
 
 function FetchNewAmount() {
-    return fetch(exchangeUrl, {
+    return fetch(exchangeURL, {
     })
 
             .then(function (response) {
