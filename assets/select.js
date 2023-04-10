@@ -5,11 +5,17 @@ var historylist = $("#historylist");
 fetch("https://restcountries.com/v3.1/all")
     .then((res) => res.json())
     .then((countries) => {
+        console.log(countries);
+        let countryArray = []
         Object.entries(countries).forEach(function (val) {
-            const option = document.createElement("option");
-            option.textContent = val[1].name.common;
-            countriesList.append(option);
+            countryArray.push(val[1].name.common)
         });
+        countryArray.sort()
+        for (let i = 0; i < countryArray.length; i++) {
+            const option = document.createElement("option");
+            option.textContent = countryArray[i];
+            countriesList.append(option);
+        }
     });
 
 var SearchBarVal = ''
