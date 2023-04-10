@@ -1,12 +1,3 @@
-/* body {
-    height: 100%;
-    background-color: rgb(99, 88, 88);
+body {
+    min-height: 100vh;
 }
-
-h1 {
-    color: rgb(0, 0, 0);
-    font-size: 10vh;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-} */
