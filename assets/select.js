@@ -25,8 +25,7 @@ if (searchedCountries == null) {
 
 for (let i = 0; i < searchedCountries.length; i++) {
     var newSearchedCountry = $("<li>").text(searchedCountries[i])
-    newSearchedCountry.addClass("button is-info is-large is-fullwidth")
-    newSearchedCountry.attr("id", "countrybtn")
+    newSearchedCountry.addClass("countrybtn button is-info is-large is-fullwidth")
     historylist.append(newSearchedCountry)
 }
 
@@ -53,7 +52,7 @@ SearchCountry.addEventListener('click', function (event) {
     Countryselect()
 });
 
-var countrybtn = $("#countrybtn")
+var countrybtn = $(".countrybtn")
 countrybtn.on('click', function (event) {
     event.preventDefault()
     SearchBarVal = ($(event.target).text())
