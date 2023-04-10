@@ -103,6 +103,6 @@ function FetchNewAmount() {
 }
 
 function PlaceNewAmount() {
-    ConvertedAmount.innerHTML = " = " + amount + currency
+    ConvertedAmount.innerHTML = " = " + amount + " " + currency
 }
 ConvertBtn.addEventListener('click', ConvertCurrency);
