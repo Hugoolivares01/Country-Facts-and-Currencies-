@@ -20,7 +20,7 @@ if (searchedCountries == null) {
 
 for (let i = 0; i < searchedCountries.length; i++) {
     var newSearchedCountry = $("<li>").text(searchedCountries[i])
-    newSearchedCountry.addClass("button is-outlined is-info is-large is-fullwidth")
+    newSearchedCountry.addClass("button is-info is-large is-fullwidth")
     newSearchedCountry.attr("id", "countrybtn")
     historylist.append(newSearchedCountry)
 }
