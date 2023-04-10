@@ -5,7 +5,6 @@ var historylist = $("#historylist");
 fetch("https://restcountries.com/v3.1/all")
     .then((res) => res.json())
     .then((countries) => {
-        console.log(countries);
         let countryArray = []
         Object.entries(countries).forEach(function (val) {
             countryArray.push(val[1].name.common)
