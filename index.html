@@ -11,9 +11,12 @@
 
 </head>
 
-<body>
-    <section class="section is-medium">
-        <h1>Country</h1>
+<body class="has-background-dark">
+    <section class="columns is-small is-flex is-flex-direction-column is-align-content-center py-5">
+        <h1 class="column is is-align-self-center has-text-light title is-size-1">Country Information and Currency
+            Calculator</h1>
+        <p class="column is-align-self-center has-text-light is-size-4">Select a country below to see its information
+        </p>
     </section>
     <section class="$section-padding-large">
         <div class="field has-addons is-flex is-justify-content-center">
@@ -22,11 +25,25 @@
                     <option>Select Country</option>
                 </select>
             </div>
-            <div class="control ">
+            <div class="control">
                 <button id="Search-Country" class="button is-info is-large">Select</button>
             </div>
         </div>
+        <div class="columns is-flex is-justify-content-center pt-4">
+            <ul id="historylist" class="is-5 column is-flex is-flex-direction-column is-justify-content-center buttons">
+            </ul>
+        </div>
     </section>
+    <div id="modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            Please select a country
+        </div>
+        <button id="close" class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
     <script src="assets/select.js"></script>
 </body>
 

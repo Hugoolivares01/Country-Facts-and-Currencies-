@@ -1,38 +1,3 @@
-// fetch('https://restcountries.com/v3.1/all', {
-// })
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log(data);
-//     });
-
-// fetch('https://restcountries.com/v3.1/name/italy', {
-// })
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log(data);
-//     });
-
-// fetch('https://api.frankfurter.app/latest?amount=10&from=GBP&to=USD', {
-// })
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log(data);
-//     });
-// fetch('https://api.frankfurter.app/latest?amount=10&from=GBP&to=USD', {
-// })
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log(data);
-//     });
-
 var countryName = document.querySelector('#country-name')
 var flag = document.querySelector('#flag')
 var capital = document.querySelector('#capital')
@@ -47,17 +12,15 @@ var CurrencyTitle = document.querySelector('#CurrencyTitle')
 var searchValue = ""
 var currency = ""
 var amount = ""
+var exchangeURL = ''
+var $el = document.querySelector('#el')
 
 document.addEventListener('DOMContentLoaded', function () {
     var SearchLine = document.location.search;
     var SearchSplit = SearchLine.split('=');
-    searchValue = SearchSplit[1];
-    // var query = searchParamsArr[0].split('=').pop();
-    // changed later this is a place holder for value change
+    searchValue = SearchSplit[1]
+    fetchCountryInfo()
 });
-// var searchValue = "France"
-
-fetchCountryInfo()
 
 function fetchCountryInfo() {
     var infoURL = 'https://restcountries.com/v3.1/name/' + searchValue
@@ -67,13 +30,23 @@ function fetchCountryInfo() {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
             countryName.innerHTML = data[0].name.common
             flag.setAttribute("src", data[0].flags.png)
             capital.innerHTML = "Capital: " + data[0].capital[0]
             population.innerHTML = "Population: " + data[0].population
-            let language = JSON.stringify(data[0].languages).split(":")[1].replace(/[^a-zA-Z]/g, "")
-            languages.innerHTML = "Main language: " + language
+            let language = JSON.stringify(data[0].languages)
+            let languageDataArray = language.split(",")
+            let languageArray = []
+            for (let i = 0; i < languageDataArray.length; i++) {
+                let languageName = languageDataArray[i].split(":")[1].replace("}", "")
+                languageArray.push(languageName.replace(/"/g, ""))
+            }
+            for (let i = 0; i < languageArray.length; i++) {
+                let li = document.createElement("li")
+                li.setAttribute("class", "px-3")
+                li.innerText = languageArray[i]
+                languages.appendChild(li)
+            }
             map.innerHTML = "Link to Map of " + data[0].name.common
             map.setAttribute("href", data[0].maps.googleMaps)
             currency = JSON.stringify(data[0].currencies).split(":")[0].replace(/[^a-zA-Z]/g, "")
@@ -83,49 +56,53 @@ function fetchCountryInfo() {
 
 function ConvertCurrency() {
     GrabForeignAmount()
-    FetchNewAmount()
+
 }
 
 function GrabForeignAmount() {
     var ForceNumberInput = parseInt(InputAmount.value);
     if (isNaN(ForceNumberInput)) {
-        alert("Not a number try again");
+        var modal = document.querySelector('#el');
+        modal.classList.add('is-active');
+        var closeModalBtn = document.querySelector('#close1');
+        closeModalBtn.addEventListener('click', function () {
+            var modal = document.querySelector('#el');
+            modal.classList.remove('is-active');
+        });
         return;
     }
     else {
-        var exchangeURL = 'https://api.frankfurter.app/latest?amount=' + ForceNumberInput + '&from=USD&to=' + currency;
-        console.log(exchangeURL);
-        return exchangeURL;
+        exchangeURL = 'https://api.frankfurter.app/latest?amount=' + ForceNumberInput + '&from=USD&to=' + currency;
+        FetchNewAmount()
     }
 }
 
 function FetchNewAmount() {
-    var NewUrl = GrabForeignAmount();
-    return fetch(NewUrl, {
+    return fetch(exchangeURL, {
     })
+
         .then(function (response) {
-            return response.json();
+            if (!response.ok) {
+                var modal = document.querySelector('#el2');
+                modal.classList.add('is-active');
+                var closeModalBtn = document.querySelector('#close2');
+                closeModalBtn.addEventListener('click', function () {
+                    var modal = document.querySelector('#el2');
+                    modal.classList.remove('is-active');
+                });
+                return;
+            }
+            else {
+                return response.json();
+            }
         })
         .then(function (data) {
-            console.log(data);
             amount = JSON.stringify(data.rates).replace(/[^0-9.]/g, "");
             PlaceNewAmount()
         });
 }
 
 function PlaceNewAmount() {
-    console.log(amount);
     ConvertedAmount.innerHTML = " = " + amount + currency
 }
 ConvertBtn.addEventListener('click', ConvertCurrency);
-
-// fetch('https://api.frankfurter.app/latest?amount=20&from=USD&to=GBP', {
-// })
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         NewRate = data.rates;
-//         console.log(NewRate);
-//     });
-//     // reference
